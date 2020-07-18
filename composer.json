@@ -1,6 +1,6 @@
 {
-    "name": "nthmedia/stockbase",
-    "description": "Stockbase implementation for Laravel",
+    "name": "nthmedia/laravel-stockbase",
+    "description": "Stockbase integration for Laravel",
     "license": "proprietary",
     "authors": [
         {
@@ -10,19 +10,34 @@
     ],
     "autoload": {
         "psr-4" : {
-            "nthmedia\\Stockbase\\": "src/"
+            "Nthmedia\\Stockbase\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4" : {
-            "nthmedia\\Stockbase\\Tests\\": "tests/"
+            "Nthmedia\\Stockbase\\Tests\\": "tests/"
         }
     },
     "require": {
-        "dividebv/phpdivideiq": "^0.6.0"
+        "php": "^7.4",
+        "dividebv/phpdivideiq": "^0.6.0",
+        "webmozart/assert": "^1.9",
+        "spatie/data-transfer-object": "^2.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.2",
-        "orchestra/testbench": "^5.3"
+        "orchestra/testbench": "^5.3",
+        "symplify/easy-coding-standard": "^8.1",
+        "nunomaduro/larastan": "^0.6.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "nthmedia\\Stockbase\\StockbaseServiceProvider"
+            ],
+            "aliases": {
+                "Stockbase": "nthmedia\\Stockbase\\Facades\\Stockbase"
+            }
+        }
     }
 }
