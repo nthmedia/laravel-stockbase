@@ -33,10 +33,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "nthmedia\\Stockbase\\StockbaseServiceProvider"
+                "Nthmedia\\Stockbase\\StockbaseServiceProvider"
             ],
             "aliases": {
-                "Stockbase": "nthmedia\\Stockbase\\Facades\\Stockbase"
+                "Stockbase": "Nthmedia\\Stockbase\\Facades\\Stockbase"
             }
         }
     }
