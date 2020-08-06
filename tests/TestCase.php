@@ -27,4 +27,12 @@ class TestCase extends OrchestraTestCase
             'Stockbase' => Stockbase::class,
         ];
     }
+
+    /**
+     * Set Faker default locale
+     */
+    protected function setUpFaker()
+    {
+        $this->faker = $this->makeFaker('nl_NL');
+    }
 }
