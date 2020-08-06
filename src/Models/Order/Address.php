@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Nthmedia\Stockbase\Models\Order;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class Address extends DataTransferObject
+class Address extends FlexibleDataTransferObject
 {
     public string $Street;
     public string $StreetNumber;

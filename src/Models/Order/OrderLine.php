@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Nthmedia\Stockbase\Models\Order;
 
-use Spatie\DataTransferObject\DataTransferObject;
+use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
-class OrderLine extends DataTransferObject
+class OrderLine extends FlexibleDataTransferObject
 {
     public int $Number;
     public string $EAN;
