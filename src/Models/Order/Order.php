@@ -15,5 +15,5 @@ class Order extends FlexibleDataTransferObject
      */
     public $OrderLines;
 
-    public OrderDelivery $OrderDelivery;
+    public ?OrderDelivery $OrderDelivery;
 }
