@@ -10,6 +10,7 @@ class Address extends FlexibleDataTransferObject
 {
     public string $Street;
     public string $StreetNumber;
+    public ?string $StreetNumberAddition;
     public string $ZipCode;
     public string $City;
     public string $CountryCode;

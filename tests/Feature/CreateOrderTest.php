@@ -7,16 +7,27 @@ namespace Nthmedia\Stockbase\Tests;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
 use Nthmedia\Stockbase\Facades\Stockbase;
+use Nthmedia\Stockbase\FakeStockbaseClient;
 use Nthmedia\Stockbase\Models\Order\Address;
 use Nthmedia\Stockbase\Models\Order\Order;
 use Nthmedia\Stockbase\Models\Order\OrderDelivery;
 use Nthmedia\Stockbase\Models\Order\OrderHeader;
 use Nthmedia\Stockbase\Models\Order\OrderResponse;
 use Nthmedia\Stockbase\Models\Order\Person;
+use Nthmedia\Stockbase\StockbaseClient;
 
 class CreateOrderTest extends TestCase
 {
     use WithFaker;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        app()->bind('stockbase', function () {
+            return resolve(FakeStockbaseClient::class);
+        });
+    }
 
     public function test_create_order(): void
     {

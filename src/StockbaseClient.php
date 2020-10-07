@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nthmedia\Stockbase;
 
 use Exception;
+use Nthmedia\Stockbase\Contracts\StockbaseClientContract;
 use Nthmedia\Stockbase\DivideIQ\DivideIQ;
 use Nthmedia\Stockbase\Exceptions\StockbaseClientException;
 use Webmozart\Assert\Assert;
@@ -12,7 +13,7 @@ use Webmozart\Assert\Assert;
 /**
  * Stockbase API client.
  */
-class StockbaseClient
+class StockbaseClient implements StockbaseClientContract
 {
     public const STOCKBASE_STOCK_ENDPOINT = 'stockbase_stock';
     public const STOCKBASE_IMAGES_ENDPOINT = 'stockbase_images';
