@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Nthmedia\Stockbase\Models\Order;
-
 
 class OrderResponse extends \Spatie\DataTransferObject\FlexibleDataTransferObject
 {
@@ -13,7 +13,7 @@ class OrderResponse extends \Spatie\DataTransferObject\FlexibleDataTransferObjec
     {
         return new static([
             'StatusCode' => $parameters['StatusCode'],
-            'OrderResponse' => $parameters['Items'][0]['OrderRequest']
+            'OrderResponse' => $parameters['Items'][0]['OrderRequest'],
         ]);
     }
 }
