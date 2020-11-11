@@ -22,8 +22,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Easy Coding Standard Action
-        uses: zingimmick/ecs-action@0.0.6
-        with:
-          version: v8.1.6
-          args: --config=ecs.yaml --clear-cache
+      - name: Install JQ
+        run: sudo apt-get install jq
+
+      - name: Install ECS
+        run: composer require symplify/easy-coding-standard --dev
+
+      - name: Run ECS
+        run: exit $(vendor/bin/ecs check --output-format=json | jq '.totals.errors')
