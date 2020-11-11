@@ -26,4 +26,4 @@ jobs:
         uses: zingimmick/ecs-action@0.0.6
         with:
           version: v8.1.6
-          args: --clear-cache
+          args: --config=ecs.yaml --clear-cache
