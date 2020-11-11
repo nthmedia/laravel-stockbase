@@ -2,37 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Nthmedia\Stockbase\Tests;
+namespace Nthmedia\Stockbase\Tests\Feature;
 
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
 use Nthmedia\Stockbase\Facades\Stockbase;
-use Nthmedia\Stockbase\FakeStockbaseClient;
 use Nthmedia\Stockbase\Models\Order\Address;
 use Nthmedia\Stockbase\Models\Order\Order;
 use Nthmedia\Stockbase\Models\Order\OrderDelivery;
 use Nthmedia\Stockbase\Models\Order\OrderHeader;
 use Nthmedia\Stockbase\Models\Order\OrderResponse;
 use Nthmedia\Stockbase\Models\Order\Person;
-use Nthmedia\Stockbase\StockbaseClient;
+use Nthmedia\Stockbase\Tests\TestCase;
 
 class CreateOrderTest extends TestCase
 {
-    use WithFaker;
-
     protected function setUp(): void
     {
         parent::setUp();
 
-        app()->bind('stockbase', function () {
-            return resolve(FakeStockbaseClient::class);
-        });
+        parent::setUpFaker();
+
+        parent::setUpFakeStockbaseClient();
     }
 
     public function test_create_order(): void
     {
         $orderNumber = (string) $this->faker->numberBetween(1000000000, 9000000000);
-        $timestamp = Carbon::now()->toDateTimeLocalString();
+        $timestamp = Carbon::now()->format('Y-m-d H:i:s');
         $customer = [
             'firstName' => $this->faker->firstName(),
             'lastName' => $this->faker->lastName(),
@@ -47,21 +43,21 @@ class CreateOrderTest extends TestCase
 
         $response = Stockbase::createOrder($order->toArray());
 
-        tap($response['Items'][0]['OrderRequest']['OrderHeader'], function ($orderHeader) use ($orderNumber) {
+        tap($response['Items'][0]['OrderRequest']['OrderHeader'], function ($orderHeader) use ($orderNumber): void {
             $this->assertEquals($orderNumber, $orderHeader['OrderNumber']);
         });
 
-        tap($response['Items'][0]['OrderRequest']['OrderLines'][0], function ($orderLine1) {
+        tap($response['Items'][0]['OrderRequest']['OrderLines'][0], function ($orderLine1): void {
             $this->assertEquals(2000000000003, $orderLine1['EAN']);
             $this->assertEquals(1, $orderLine1['Amount']);
         });
 
-        tap($response['Items'][0]['OrderRequest']['OrderLines'][1], function ($orderLine1) {
+        tap($response['Items'][0]['OrderRequest']['OrderLines'][1], function ($orderLine1): void {
             $this->assertEquals(2000000000002, $orderLine1['EAN']);
             $this->assertEquals(1, $orderLine1['Amount']);
         });
 
-        tap($response['Items'][0]['OrderRequest']['OrderDelivery'], function ($orderDelivery) use ($customer) {
+        tap($response['Items'][0]['OrderRequest']['OrderDelivery'], function ($orderDelivery) use ($customer): void {
             $this->assertEquals($customer['firstName'], $orderDelivery['Person']['FirstName']);
             $this->assertEquals($customer['lastName'], $orderDelivery['Person']['Surname']);
 
@@ -99,8 +95,9 @@ class CreateOrderTest extends TestCase
     }
 
 
-    protected function createOrder(string $orderNumber, string $timestamp, array $customer): Order {
-        return $order = new Order([
+    protected function createOrder(string $orderNumber, string $timestamp, array $customer): Order
+    {
+        return new Order([
             'OrderHeader' => new OrderHeader([
                 'OrderNumber' => $orderNumber,
                 'TimeStamp' => $timestamp,
@@ -120,7 +117,7 @@ class CreateOrderTest extends TestCase
             ],
             'OrderDelivery' => new OrderDelivery([
                 'Person' => new Person([
-                    'Initials' => '',
+                    'Initials' => mb_substr($customer['firstName'], 0, 1),
                     'FirstName' => $customer['firstName'],
                     'SurnamePrefix' => '',
                     'Surname' => $customer['lastName'],
@@ -129,6 +126,7 @@ class CreateOrderTest extends TestCase
                 'Address' => new Address([
                     'Street' => $customer['street'],
                     'StreetNumber' => $customer['houseNumber'],
+                    'StreetNumberAddition' => '',
                     'ZipCode' => $customer['zipCode'],
                     'City' => $customer['city'],
                     'CountryCode' => $customer['country'],
