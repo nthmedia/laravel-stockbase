@@ -24,6 +24,6 @@ jobs:
 
       - name: Easy Coding Standard Action
         uses: zingimmick/ecs-action@0.0.6
-          with:
-            version: v8.1.6
-            args: --clear-cache
+        with:
+          version: v8.1.6
+          args: --clear-cache
