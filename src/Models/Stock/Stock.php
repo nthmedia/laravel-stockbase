@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Nthmedia\Stockbase\Models\Stock;
 
-use Carbon\Carbon;
 use Spatie\DataTransferObject\FlexibleDataTransferObject;
 
 class Stock extends FlexibleDataTransferObject
@@ -12,7 +11,7 @@ class Stock extends FlexibleDataTransferObject
     public string $ean;
     public int $quantity;
     public bool $never_out_of_stock;
-    public Carbon $timestamp;
+    public string $updated_at;
 
     public function __construct(array $parameters = [])
     {
@@ -20,7 +19,7 @@ class Stock extends FlexibleDataTransferObject
             'ean' => $parameters['EAN'],
             'quantity' => $parameters['Amount'],
             'never_out_of_stock' => $parameters['NOOS'],
-            'timestamp' => Carbon::createFromTimestampUTC($parameters['Timestamp']),
+            'updated_at' => \DateTime::createFromFormat('U', (string) $parameters['Timestamp'])->format('Y-m-d H:i:s'),
         ]);
     }
 }

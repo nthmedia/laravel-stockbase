@@ -1,17 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Nthmedia\Stockbase;
-
 
 use Carbon\Carbon;
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use Nthmedia\Stockbase\Contracts\StockbaseClientContract;
-use Nthmedia\Stockbase\Exceptions\StockbaseClientException;
-use Nthmedia\Stockbase\Models\Stock\Stock;
-use Nthmedia\Stockbase\Models\Stock\StockCollection;
-use Nthmedia\Stockbase\Models\Stock\StockGroup;
 
 class FakeStockbaseClient implements StockbaseClientContract
 {
@@ -36,19 +32,19 @@ class FakeStockbaseClient implements StockbaseClientContract
                             'EAN' => '1000000000001',
                             'Amount' => 1,
                             'NOOS' => false,
-                            'Timestamp' => Carbon::now()->subDays(1)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(1)->format('U'),
                         ],
                         [
                             'EAN' => '1000000000002',
                             'Amount' => 1,
                             'NOOS' => false,
-                            'Timestamp' => Carbon::now()->subDays(2)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(2)->format('U'),
                         ],
                         [
                             'EAN' => '1000000000003',
                             'Amount' => 0,
                             'NOOS' => false,
-                            'Timestamp' => Carbon::now()->subDays(3)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(3)->format('U'),
                         ],
                     ],
                 ],
@@ -62,23 +58,23 @@ class FakeStockbaseClient implements StockbaseClientContract
                             'EAN' => '2000000000001',
                             'Amount' => 1,
                             'NOOS' => true,
-                            'Timestamp' => Carbon::now()->subDays(1)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(1)->format('U'),
                         ],
                         [
                             'EAN' => '2000000000002',
                             'Amount' => 0,
                             'NOOS' => false,
-                            'Timestamp' => Carbon::now()->subDays(2)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(2)->format('U'),
                         ],
                         [
                             'EAN' => '2000000000003',
                             'Amount' => 0,
                             'NOOS' => false,
-                            'Timestamp' => Carbon::now()->subDays(3)->format('u'),
+                            'Timestamp' => Carbon::now()->subDays(3)->format('U'),
                         ],
                     ],
                 ],
-            ]
+            ],
         ];
     }
 
@@ -169,8 +165,8 @@ class FakeStockbaseClient implements StockbaseClientContract
                         ],
                     ],
                     'ExceptionMessage' => '',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }
