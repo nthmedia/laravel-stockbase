@@ -97,7 +97,7 @@ class CreateOrderTest extends TestCase
 
     protected function createOrder(string $orderNumber, string $timestamp, array $customer): Order
     {
-        return new Order([
+        return $order = new Order([
             'OrderHeader' => new OrderHeader([
                 'OrderNumber' => $orderNumber,
                 'TimeStamp' => $timestamp,
