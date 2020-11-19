@@ -86,13 +86,13 @@ class FakeStockbaseClient implements StockbaseClientContract
                 [
                     'StatusCode' => 1,
                     'OrderRequest' => [
-                        'ClientGUID' => $this->faker->uuid(),
+                        'ClientGUID' => $this->faker->uuid,
                         'OrderSystem' => 0,
                         'OrderSystemSettings' => [],
                         'IsValid' => true,
                         'ValidationResults' => [],
                         'ErrorMessage' => '',
-                        'GUID' => $this->faker->uuid(),
+                        'GUID' => $this->faker->uuid,
                         'Statuses' => [
                             [
                                 'Code' => 3,
@@ -101,7 +101,7 @@ class FakeStockbaseClient implements StockbaseClientContract
                             ],
                         ],
                         'OrderHeader' => [
-                            'GUID' => $this->faker->uuid(),
+                            'GUID' => $this->faker->uuid,
                             'OrderNumber' => $order['OrderHeader']['OrderNumber'],
                             'Part' => '1',
                             'TimeStamp' => Carbon::now()->format('Y-m-d\TH:i:s'),
@@ -113,7 +113,7 @@ class FakeStockbaseClient implements StockbaseClientContract
                         'OrderLines' => [
                             [
                                 'OrderRequestGUID' => '00000000-0000-0000-0000-000000000000',
-                                'GUID' => $this->faker->uuid(),
+                                'GUID' => $this->faker->uuid,
                                 'Number' => 1,
                                 'EAN' => '2000000000003',
                                 'Amount' => 1,
@@ -126,7 +126,7 @@ class FakeStockbaseClient implements StockbaseClientContract
                             ],
                             [
                                 'OrderRequestGUID' => '00000000-0000-0000-0000-000000000000',
-                                'GUID' => $this->faker->uuid(),
+                                'GUID' => $this->faker->uuid,
                                 'Number' => 2,
                                 'EAN' => '2000000000002',
                                 'Amount' => 1,
@@ -139,7 +139,7 @@ class FakeStockbaseClient implements StockbaseClientContract
                             ],
                         ],
                         'OrderDelivery' => [
-                            'GUID' => $this->faker->uuid(),
+                            'GUID' => $this->faker->uuid,
                             'Person' => [
                                 'Gender' => 0,
                                 'Initials' => $order['OrderDelivery']['Person']['Initials'],
