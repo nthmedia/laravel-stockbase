@@ -11,4 +11,5 @@ class OrderLine extends FlexibleDataTransferObject
     public int $Number;
     public string $EAN;
     public int $Amount;
+    public float $Price;
 }
