@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Nthmedia\Stockbase\Models\Order;
 
-class OrderResponse extends \Spatie\DataTransferObject\FlexibleDataTransferObject
+final class OrderResponse extends \Spatie\DataTransferObject\FlexibleDataTransferObject
 {
     public int $StatusCode;
     public Order $OrderResponse;

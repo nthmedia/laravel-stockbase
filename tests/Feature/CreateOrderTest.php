@@ -108,11 +108,13 @@ class CreateOrderTest extends TestCase
                     'Number' => 1,
                     'EAN' => '2000000000003',
                     'Amount' => 1,
+                    'Price' => 10.95,
                 ],
                 [
                     'Number' => 2,
                     'EAN' => '2000000000002',
                     'Amount' => 1,
+                    'Price' => 20.0,
                 ],
             ],
             'OrderDelivery' => new OrderDelivery([
