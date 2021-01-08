@@ -20,12 +20,23 @@ class DivideIQ extends \DivideBV\PHPDivideIQ\DivideIQ
      */
     public function request($serviceName, $payload = [], $method = 'GET'): array
     {
-        $output = parent::request($serviceName, $payload, $method);
+        return $this->toArray(parent::request($serviceName, $payload, $method));
+    }
 
-        // Convert object back to JSON
-        $output = json_encode($output);
+    /**
+     * @param $data
+     * @return mixed
+     */
+    protected function toArray($data)
+    {
+        if (is_object($data)) {
+            $data = get_object_vars($data);
+        }
 
-        // Convert JSON to array
-        return json_decode($output, true);
+        if (is_array($data)) {
+            return array_map([$this, __FUNCTION__], $data);
+        }
+
+        return $data;
     }
 }
