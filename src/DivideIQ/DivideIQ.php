@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nthmedia\Stockbase\DivideIQ;
 
 use Exception;
+use Nthmedia\TransformToArray\TransformToArray;
 
 class DivideIQ extends \DivideBV\PHPDivideIQ\DivideIQ
 {
@@ -20,23 +21,6 @@ class DivideIQ extends \DivideBV\PHPDivideIQ\DivideIQ
      */
     public function request($serviceName, $payload = [], $method = 'GET'): array
     {
-        return $this->toArray(parent::request($serviceName, $payload, $method));
-    }
-
-    /**
-     * @param $data
-     * @return mixed
-     */
-    protected function toArray($data)
-    {
-        if (is_object($data)) {
-            $data = get_object_vars($data);
-        }
-
-        if (is_array($data)) {
-            return array_map([$this, __FUNCTION__], $data);
-        }
-
-        return $data;
+        return TransformToArray::convert(parent::request($serviceName, $payload, $method));
     }
 }
