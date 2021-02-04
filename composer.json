@@ -19,7 +19,7 @@
         }
     },
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "dividebv/phpdivideiq": "dev-master",
         "webmozart/assert": "^1.9",
         "spatie/data-transfer-object": "^2.2",
