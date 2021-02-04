@@ -22,7 +22,8 @@
         "php": "^7.4",
         "dividebv/phpdivideiq": "dev-master",
         "webmozart/assert": "^1.9",
-        "spatie/data-transfer-object": "^2.2"
+        "spatie/data-transfer-object": "^2.2",
+        "nthmedia/transform-to-array": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.2",
